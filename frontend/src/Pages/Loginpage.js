@@ -20,17 +20,20 @@ export const Loginpage = () => {
   async function login(e) {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:4000/login", {
-        method: "POST",
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://bloggerz-blogapp-backend.onrender.com/login",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         const userInfo = await response.json();

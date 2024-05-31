@@ -7,11 +7,13 @@ export const HomePage = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:4000/post").then((response) => {
-      response.json().then((posts) => {
-        setPosts(posts);
-      });
-    });
+    fetch("https://bloggerz-blogapp-backend.onrender.com/post").then(
+      (response) => {
+        response.json().then((posts) => {
+          setPosts(posts);
+        });
+      }
+    );
   }, []);
 
   if (posts.length === 0) {

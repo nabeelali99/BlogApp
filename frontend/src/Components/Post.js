@@ -28,17 +28,20 @@ export const Post = ({
 
     if (Like) {
       setLikes(Likes - 1);
-      fetch(`http://localhost:4000/post/${_id}/unlike`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({ userId: userInfo.id }),
-      }).then(() => {});
+      fetch(
+        `https://bloggerz-blogapp-backend.onrender.com/post/${_id}/unlike`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ userId: userInfo.id }),
+        }
+      ).then(() => {});
     } else {
       setLikes(Likes + 1);
-      fetch(`http://localhost:4000/post/${_id}/like`, {
+      fetch(`https://bloggerz-blogapp-backend.onrender.com/post/${_id}/like`, {
         method: "PUT",
         credentials: "include",
         headers: {
@@ -53,7 +56,10 @@ export const Post = ({
     <div className="post">
       <div className="image">
         <Link to={`/post/${_id}`}>
-          <img src={"http://localhost:4000/" + cover || ""} alt="" />
+          <img
+            src={"https://bloggerz-blogapp-backend.onrender.com/" + cover || ""}
+            alt=""
+          />
         </Link>
       </div>
       <div className="texts">

@@ -7,9 +7,12 @@ export const ProfilePage = () => {
   const [userProfile, setUserProfile] = useState({});
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:4000/profile/${userInfo.id}`, {
-      credentials: "include",
-    }).then((response) => {
+    fetch(
+      `https://bloggerz-blogapp-backend.onrender.com/profile/${userInfo.id}`,
+      {
+        credentials: "include",
+      }
+    ).then((response) => {
       response.json().then((user) => {
         setUserProfile(user.user);
         setPosts(user.posts);

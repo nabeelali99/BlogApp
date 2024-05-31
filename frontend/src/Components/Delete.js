@@ -34,7 +34,7 @@ export default function Delete({ id }) {
   };
   const handleClose = () => {
     setOpen(false);
-    fetch(`http://localhost:4000/post/${id}`, {
+    fetch(`https://bloggerz-blogapp-backend.onrender.com/post/${id}`, {
       method: "DELETE",
       credentials: "include",
     }).then(() => {

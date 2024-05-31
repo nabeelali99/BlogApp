@@ -13,7 +13,7 @@ export const EditPost = () => {
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`https://bloggerz-blogapp-backend.onrender.com/post/${id}`)
       .then((response) => response.json())
       .then((post) => {
         setTitle(post.title);
@@ -33,11 +33,14 @@ export const EditPost = () => {
       data.set("file", files?.[0]);
     }
 
-    const response = await fetch("http://localhost:4000/post", {
-      method: "PUT",
-      body: data,
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://bloggerz-blogapp-backend.onrender.com/post",
+      {
+        method: "PUT",
+        body: data,
+        credentials: "include",
+      }
+    );
     if (response.ok) {
       setRedirect(true);
       toast.success("Post updated");

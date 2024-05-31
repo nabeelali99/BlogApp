@@ -13,7 +13,7 @@ export const PostPage = () => {
   const { userInfo } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/post/${id}`)
+    fetch(`https://bloggerz-blogapp-backend.onrender.com/post/${id}`)
       .then((response) => response.json())
       .then((postInfo) => setPostInfo(postInfo));
   }, []);
@@ -98,7 +98,10 @@ export const PostPage = () => {
         </div>
       )}
       <div className="image">
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
+        <img
+          src={`https://bloggerz-blogapp-backend.onrender.com/${postInfo.cover}`}
+          alt=""
+        />
       </div>
 
       <div

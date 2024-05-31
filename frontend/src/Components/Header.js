@@ -9,7 +9,7 @@ export const Header = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch("http://localhost:4000/profile", {
+    fetch("https://bloggerz-blogapp-backend.onrender.com/profile", {
       credentials: "include",
     })
       .then((response) => {
@@ -27,10 +27,13 @@ export const Header = () => {
   }, []);
 
   async function logout() {
-    const response = await fetch("http://localhost:4000/logout", {
-      credentials: "include",
-      method: "POST",
-    });
+    const response = await fetch(
+      "https://bloggerz-blogapp-backend.onrender.com/logout",
+      {
+        credentials: "include",
+        method: "POST",
+      }
+    );
     if (response.ok) {
       setUserInfo(null);
       toast.success("Logged Out", {});

@@ -24,7 +24,7 @@ export default function MediaCard({ _id, title, summary, cover }) {
       cover={
         <img
           alt="example"
-          src={"http://localhost:4000/" + cover || ""}
+          src={"https://bloggerz-blogapp-backend.onrender.com/" + cover || ""}
           height={320}
         />
       }
