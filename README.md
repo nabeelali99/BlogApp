@@ -65,9 +65,9 @@ Bloggerz is a full-featured blog application built using the MERN stack (MongoDB
 3. **Setup environment variables**:
    Create a `.env` file in the root directory and add the following:
    ```
-   PORT=5000
-   MONGODBURL=mongodb_connection_string
-   SECRET=jwt_secret
+   PORT=4000
+   MONGODBURL=mongodb+srv://nabeelali11101999:07IiXauCC2OnLk7r@cluster0.wroqja1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+   SECRET=secretkey
    ```
 
 ### Running the Application
