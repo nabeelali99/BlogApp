@@ -9,9 +9,7 @@ export const Header = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch("https://bloggerz-blogapp-backend.onrender.com/profile", {
-      credentials: "include",
-    })
+    fetch("https://bloggerz-blogapp-backend.onrender.com/profile", {})
       .then((response) => {
         if (!response.ok) {
           setUserInfo(null);
@@ -30,7 +28,6 @@ export const Header = () => {
     const response = await fetch(
       "https://bloggerz-blogapp-backend.onrender.com/logout",
       {
-        credentials: "include",
         method: "POST",
       }
     );

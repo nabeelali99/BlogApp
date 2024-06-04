@@ -32,7 +32,6 @@ export const Post = ({
         `https://bloggerz-blogapp-backend.onrender.com/post/${_id}/unlike`,
         {
           method: "PUT",
-          credentials: "include",
           headers: {
             "content-type": "application/json",
           },
@@ -43,7 +42,6 @@ export const Post = ({
       setLikes(Likes + 1);
       fetch(`https://bloggerz-blogapp-backend.onrender.com/post/${_id}/like`, {
         method: "PUT",
-        credentials: "include",
         headers: {
           "content-type": "application/json",
         },

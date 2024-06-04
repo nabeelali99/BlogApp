@@ -38,7 +38,6 @@ export const EditPost = () => {
       {
         method: "PUT",
         body: data,
-        credentials: "include",
       }
     );
     if (response.ok) {

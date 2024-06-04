@@ -31,7 +31,6 @@ export const Loginpage = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include",
         }
       );
 

@@ -36,7 +36,6 @@ export default function Delete({ id }) {
     setOpen(false);
     fetch(`https://bloggerz-blogapp-backend.onrender.com/post/${id}`, {
       method: "DELETE",
-      credentials: "include",
     }).then(() => {
       setRedirect(true);
       toast.success("Post Deleted");
