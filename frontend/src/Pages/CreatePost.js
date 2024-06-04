@@ -27,6 +27,7 @@ export const CreatePost = () => {
         body: data,
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
       }
     );

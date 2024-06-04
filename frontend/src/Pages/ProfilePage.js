@@ -8,7 +8,13 @@ export const ProfilePage = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     fetch(
-      `https://bloggerz-blogapp-backend.onrender.com/profile/${userInfo.id}`
+      `https://bloggerz-blogapp-backend.onrender.com/profile/${userInfo.id}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      }
     ).then((response) => {
       response.json().then((user) => {
         setUserProfile(user.user);
