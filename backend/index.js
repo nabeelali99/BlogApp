@@ -143,6 +143,10 @@ app.post("/logout", (req, res) => {
 // create post
 
 app.post("/post", upload.single("file"), async (req, res) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://bloggerz-blogapp-frontend.onrender.com"
+  );
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
   const extension = parts[parts.length - 1];
