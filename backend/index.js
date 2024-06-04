@@ -25,40 +25,7 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 
-app.use(
-  cors({
-    origin: "https://bloggerz-blogapp-frontend.onrender.com",
-    credentials: true,
-    methods: [
-      "GET",
-      "POST",
-      "PUT",
-      "DELETE",
-      "OPTIONS",
-      "PATCH",
-      "HEAD",
-      "CONNECT",
-      "TRACE",
-      "LINK",
-      "UNLINK",
-    ],
-    allowedHeaders: [
-      "Content-Type",
-      "Authorization",
-      "X-Requested-With",
-      "Cookie",
-      "X-CSRF-Token",
-      "X-Auth-Token",
-      "Access-Control-Allow-Origin",
-      "Access-Control-Allow-Credentials",
-      "Access-Control-Allow-Methods",
-      "Access-Control-Allow-Headers",
-      "Access-Control-Allow-Origin",
-      "X-Access-Token",
-    ],
-    accessControlAllowOrigin: "https://bloggerz-blogapp-frontend.onrender.com",
-  })
-);
+app.use(cors());
 
 app.use(cookieParser());
 
@@ -143,10 +110,6 @@ app.post("/logout", (req, res) => {
 // create post
 
 app.post("/post", upload.single("file"), async (req, res) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://bloggerz-blogapp-frontend.onrender.com"
-  );
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
   const extension = parts[parts.length - 1];
