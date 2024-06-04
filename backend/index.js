@@ -56,7 +56,7 @@ app.use(
       "Access-Control-Allow-Origin",
       "X-Access-Token",
     ],
-    accessControlAllowOrigin: "true",
+    accessControlAllowOrigin: "*",
   })
 );
 
