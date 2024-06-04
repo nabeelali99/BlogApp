@@ -26,6 +26,14 @@ export const CreatePost = () => {
         method: "POST",
         body: data,
         credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          "Access-Control-Allow-Headers":
+            "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With, X-Auth-Token, X-CSRF-Token, X-Access-Token, Access-Control-Allow-Methods",
+        },
       }
     );
 

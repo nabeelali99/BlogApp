@@ -27,11 +27,36 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: true,
+    origin: "true",
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    accessControlAllowOrigin: true,
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "DELETE",
+      "OPTIONS",
+      "PATCH",
+      "HEAD",
+      "CONNECT",
+      "TRACE",
+      "LINK",
+      "UNLINK",
+    ],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "X-Requested-With",
+      "Cookie",
+      "X-CSRF-Token",
+      "X-Auth-Token",
+      "Access-Control-Allow-Origin",
+      "Access-Control-Allow-Credentials",
+      "Access-Control-Allow-Methods",
+      "Access-Control-Allow-Headers",
+      "Access-Control-Allow-Origin",
+      "X-Access-Token",
+    ],
+    accessControlAllowOrigin: "true",
   })
 );
 
