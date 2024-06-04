@@ -27,7 +27,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://bloggerz-blogapp-frontend.onrender.com",
     credentials: true,
     methods: [
       "GET",
@@ -56,7 +56,7 @@ app.use(
       "Access-Control-Allow-Origin",
       "X-Access-Token",
     ],
-    accessControlAllowOrigin: "*",
+    accessControlAllowOrigin: "https://bloggerz-blogapp-frontend.onrender.com",
   })
 );
 
