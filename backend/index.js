@@ -41,6 +41,20 @@ app.use(express.json());
 //   next();
 // });
 
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://bloggerz-blogapp-frontend.onrender.com"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type",
+    "Access-Control-Allow-Origin"
+  );
+  next();
+});
+
 app.use(
   cors({
     origin: true,
