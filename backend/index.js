@@ -27,29 +27,16 @@ app.use(express.json());
 
 // app.use(cors());
 
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://bloggerz-blogapp-frontend.onrender.com"
-//   );
-//   res.setHeader("Access-Control-Allow-Credentials", true);
-//   res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Content-Type, Authorization, Access-Control-Allow-Origin"
-//   );
-//   next();
-// });
-
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
     "https://bloggerz-blogapp-frontend.onrender.com"
   );
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type",
+    "Content-Type, Authorization",
     "Access-Control-Allow-Origin"
   );
   next();
@@ -57,11 +44,11 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: true,
+    origin: "https://bloggerz-blogapp-frontend.onrender.com",
     credentials: true,
-    // optionsSuccessStatus: 200,
-    // methods: ["GET", "POST", "PUT", "DELETE"],
-    // allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
