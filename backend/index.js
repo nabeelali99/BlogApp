@@ -31,6 +31,7 @@ app.use(
   cors({
     origin: "https://bloggerz-blogapp-frontend.onrender.com",
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 
