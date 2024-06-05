@@ -25,11 +25,7 @@ export const CreatePost = () => {
       {
         method: "POST",
         body: data,
-        headers: {
-          "Content-Type": "application/json",
-          // "Access-Control-Allow-Origin": "*",
-          // "Content-Type": "multipart/form-data",
-        },
+        credentials: "include",
       }
     );
 
