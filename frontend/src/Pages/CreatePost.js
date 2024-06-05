@@ -26,11 +26,6 @@ export const CreatePost = () => {
         method: "POST",
         body: data,
         credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin":
-            "https://bloggerz-blogapp-frontend.onrender.com",
-        },
       }
     );
 
