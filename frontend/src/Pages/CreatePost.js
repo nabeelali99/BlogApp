@@ -28,7 +28,8 @@ export const CreatePost = () => {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Origin":
+            "https://bloggerz-blogapp-frontend.onrender.com",
         },
       }
     );

@@ -45,6 +45,7 @@ app.use(
   cors({
     origin: "https://bloggerz-blogapp-frontend.onrender.com",
     credentials: true,
+    AccessControlAllowOrigin: "https://bloggerz-blogapp-frontend.onrender.com",
     optionsSuccessStatus: 200,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: [
