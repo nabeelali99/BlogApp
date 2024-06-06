@@ -9,7 +9,9 @@ export const Header = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch("https://bloggerz-blogapp-backend.onrender.com/profile", {})
+    fetch("https://bloggerz-blogapp-backend.onrender.com/profile", {
+      credentials: "include",
+    })
       .then((response) => {
         if (!response.ok) {
           setUserInfo(null);
