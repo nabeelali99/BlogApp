@@ -145,27 +145,24 @@ app.post("/logout", (req, res) => {
 // create post
 
 app.post("/post", upload.single("file"), async (req, res) => {
-  console.log("POST /post request received");
-
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
   const extension = parts[parts.length - 1];
   const newPath = path + "." + extension;
   fs.renameSync(path, newPath);
 
-  const { token } = req.cookies;
-  jwt.verify(token, secret, {}, async (err, info) => {
-    if (err) throw err;
-    const { title, summary, content } = req.body;
-    const post = await Post.create({
-      title,
-      summary,
-      content,
-      cover: newPath,
-      author: info.id,
-    });
-    res.json(post);
+  const { title, summary, content, userProfile } = req.body;
+  const author = userProfile;
+
+  const post = await Post.create({
+    title,
+    summary,
+    content,
+    cover: newPath,
+    author,
   });
+
+  res.json(post);
 });
 
 // update existing post
@@ -252,20 +249,6 @@ app.delete("/post/:id", async (req, res) => {
 });
 
 // profile page
-
-// app.get("/profile/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { token } = req.cookies;
-//   jwt.verify(token, secret, {}, async (err, info) => {
-//     if (err) throw err;
-//     const posts = await Post.find({ author: info.id }).populate("author", [
-//       "username",
-//     ]);
-//     const user = await User.findById(id);
-//     res.json({ user, posts });
-//   });
-// });
-
 app.get("/profile/:id", async (req, res) => {
   const { id } = req.params;
   const posts = await Post.find({ author: id }).populate("author", [
