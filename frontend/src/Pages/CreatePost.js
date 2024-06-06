@@ -140,7 +140,9 @@ export const CreatePost = () => {
   const { userInfo } = useContext(UserContext);
   const [userProfile, setUserProfile] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:4000/profile/${userInfo.id}`).then((response) => {
+    fetch(
+      `https://bloggerz-blogapp-backend.onrender.com/profile/${userInfo.id}`
+    ).then((response) => {
       response.json().then((user) => {
         setUserProfile(user.user);
       });
@@ -157,10 +159,13 @@ export const CreatePost = () => {
     data.set("userProfile", userProfile._id);
 
     e.preventDefault();
-    const response = await fetch("http://localhost:4000/post", {
-      method: "POST",
-      body: data,
-    });
+    const response = await fetch(
+      "https://bloggerz-blogapp-backend.onrender.com/post",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
 
     if (response.ok) {
       setRedirect(true);
