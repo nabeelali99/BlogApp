@@ -25,6 +25,13 @@ const PORT = process.env.PORT;
 
 app.use(express.json());
 
+app.use(
+  cors({
+    origin: "https://bloggerz-blogapp-frontend.onrender.com",
+    credentials: true,
+  })
+);
+
 // app.use(cors());
 
 app.use((req, res, next) => {
@@ -37,8 +44,6 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
-
-app.use(cors());
 
 app.use(cookieParser());
 
