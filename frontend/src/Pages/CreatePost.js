@@ -140,9 +140,7 @@ export const CreatePost = () => {
   const { userInfo } = useContext(UserContext);
   const [userProfile, setUserProfile] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:4000/profile/${userInfo.id}`, {
-      credentials: "include",
-    }).then((response) => {
+    fetch(`http://localhost:4000/profile/${userInfo.id}`).then((response) => {
       response.json().then((user) => {
         setUserProfile(user.user);
       });
