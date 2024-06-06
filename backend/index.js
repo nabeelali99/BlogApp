@@ -167,6 +167,36 @@ app.post("/post", upload.single("file"), async (req, res) => {
 
 // update existing post
 
+// app.put("/post", upload.single("file"), async (req, res) => {
+//   let newPath = null;
+//   if (req.file) {
+//     const { originalname, path } = req.file;
+//     const parts = originalname.split(".");
+//     const ext = parts[parts.length - 1];
+//     newPath = path + "." + ext;
+//     fs.renameSync(path, newPath);
+//   }
+
+//   const { token } = req.cookies;
+//   jwt.verify(token, secret, {}, async (err, info) => {
+//     if (err) throw err;
+//     const { id, title, summary, content } = req.body;
+//     const post = await Post.findById(id);
+//     const isAuthor = JSON.stringify(post.author) === JSON.stringify(info.id);
+//     if (!isAuthor) {
+//       return res.status(400).json("you are not the author");
+//     }
+//     await post.updateOne({
+//       title,
+//       summary,
+//       content,
+//       cover: newPath ? newPath : postDoc.cover,
+//     });
+
+//     res.json(post);
+//   });
+// });
+
 app.put("/post", upload.single("file"), async (req, res) => {
   let newPath = null;
   if (req.file) {
@@ -177,24 +207,21 @@ app.put("/post", upload.single("file"), async (req, res) => {
     fs.renameSync(path, newPath);
   }
 
-  const { token } = req.cookies;
-  jwt.verify(token, secret, {}, async (err, info) => {
-    if (err) throw err;
-    const { id, title, summary, content } = req.body;
-    const post = await Post.findById(id);
-    const isAuthor = JSON.stringify(post.author) === JSON.stringify(info.id);
-    if (!isAuthor) {
-      return res.status(400).json("you are not the author");
-    }
-    await post.updateOne({
-      title,
-      summary,
-      content,
-      cover: newPath ? newPath : postDoc.cover,
-    });
-
-    res.json(post);
+  const { id, title, summary, content, userProfile } = req.body;
+  const author = userProfile;
+  const post = await Post.findById(id);
+  const isAuthor = JSON.stringify(post.author) === JSON.stringify(author);
+  if (!isAuthor) {
+    return res.status(400).json("you are not the author");
+  }
+  await post.updateOne({
+    title,
+    summary,
+    content,
+    cover: newPath ? newPath : post.cover,
   });
+
+  res.json(post);
 });
 
 //get all posts

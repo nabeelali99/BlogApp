@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { Editor } from "../Components/Editor";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../Context/UserContext";
 
 export const EditPost = () => {
   const { id } = useParams();
@@ -11,6 +12,18 @@ export const EditPost = () => {
   const [summary, setSummary] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
+
+  const { userInfo } = useContext(UserContext);
+  const [userProfile, setUserProfile] = useState({});
+  useEffect(() => {
+    fetch(
+      `https://bloggerz-blogapp-backend.onrender.com/profile/${userInfo.id}`
+    ).then((response) => {
+      response.json().then((user) => {
+        setUserProfile(user.user);
+      });
+    });
+  }, []);
 
   useEffect(() => {
     fetch(`https://bloggerz-blogapp-backend.onrender.com/post/${id}`)
@@ -29,6 +42,9 @@ export const EditPost = () => {
     data.set("summary", summary);
     data.set("content", content);
     data.set("id", id);
+
+    data.set("userProfile", userProfile._id);
+
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
