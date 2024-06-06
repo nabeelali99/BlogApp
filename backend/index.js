@@ -23,6 +23,19 @@ const secret = process.env.SECRET;
 const mongodbUrl = process.env.MONGODB_URL;
 const PORT = process.env.PORT;
 
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://bloggerz-blogapp-frontend.onrender.com"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, Access-Control-Allow-Origin"
+  );
+  next();
+});
+
 app.use(
   cors({
     origin: "https://bloggerz-blogapp-frontend.onrender.com",
@@ -33,17 +46,6 @@ app.use(
 app.use(express.json());
 
 // app.use(cors());
-
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://bloggerz-blogapp-frontend.onrender.com"
-  );
-  // res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
 
 app.use(cookieParser());
 
