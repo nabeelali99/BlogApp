@@ -13,27 +13,6 @@ export const CreatePost = () => {
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
 
-  // async function createPost(e) {
-  //   const data = new FormData();
-  //   data.set("title", title);
-  //   data.set("summary", summary);
-  //   data.set("content", content);
-  //   data.set("file", files[0]);
-  //   e.preventDefault();
-  //   const response = await fetch(
-  //     "https://bloggerz-blogapp-backend.onrender.com/post",
-  //     {
-  //       method: "POST",
-  //       body: data,
-  //     }
-  //   );
-
-  //   if (response.ok) {
-  //     setRedirect(true);
-  //     toast.success("Post created");
-  //   }
-  // }
-
   async function createPost(e) {
     e.preventDefault();
 

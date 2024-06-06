@@ -36,6 +36,25 @@ app.use(
 
 app.options("*", cors());
 
+// middleware to set headers
+
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://bloggerz-blogapp-frontend.onrender.com"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,OPTIONS,POST,PUT,DELETE"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  next();
+});
+
 //middlewares
 
 app.use(express.json());
@@ -126,6 +145,8 @@ app.post("/logout", (req, res) => {
 // create post
 
 app.post("/post", upload.single("file"), async (req, res) => {
+  console.log("POST /post request received");
+
   const { originalname, path } = req.file;
   const parts = originalname.split(".");
   const extension = parts[parts.length - 1];
