@@ -13,24 +13,56 @@ export const CreatePost = () => {
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
 
+  // async function createPost(e) {
+  //   const data = new FormData();
+  //   data.set("title", title);
+  //   data.set("summary", summary);
+  //   data.set("content", content);
+  //   data.set("file", files[0]);
+  //   e.preventDefault();
+  //   const response = await fetch(
+  //     "https://bloggerz-blogapp-backend.onrender.com/post",
+  //     {
+  //       method: "POST",
+  //       body: data,
+  //     }
+  //   );
+
+  //   if (response.ok) {
+  //     setRedirect(true);
+  //     toast.success("Post created");
+  //   }
+  // }
+
   async function createPost(e) {
+    e.preventDefault(); // Prevent the default form submission
+
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);
     data.set("content", content);
     data.set("file", files[0]);
-    e.preventDefault();
-    const response = await fetch(
-      "https://bloggerz-blogapp-backend.onrender.com/post",
-      {
-        method: "POST",
-        body: data,
-      }
-    );
 
-    if (response.ok) {
-      setRedirect(true);
-      toast.success("Post created");
+    try {
+      const response = await fetch(
+        "https://bloggerz-blogapp-backend.onrender.com/post",
+        {
+          method: "POST",
+          body: data,
+          credentials: "include", // Include credentials (cookies) in the request
+        }
+      );
+
+      if (response.ok) {
+        setRedirect(true);
+        toast.success("Post created");
+      } else {
+        const errorData = await response.json();
+        toast.error(`Error: ${errorData.message}`);
+      }
+    } catch (error) {
+      console.error("Error creating post:", error);
+      toast.error("Failed to create post. Please try again.");
     }
   }
 
