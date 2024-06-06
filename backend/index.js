@@ -253,17 +253,26 @@ app.delete("/post/:id", async (req, res) => {
 
 // profile page
 
+// app.get("/profile/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const { token } = req.cookies;
+//   jwt.verify(token, secret, {}, async (err, info) => {
+//     if (err) throw err;
+//     const posts = await Post.find({ author: info.id }).populate("author", [
+//       "username",
+//     ]);
+//     const user = await User.findById(id);
+//     res.json({ user, posts });
+//   });
+// });
+
 app.get("/profile/:id", async (req, res) => {
   const { id } = req.params;
-  const { token } = req.cookies;
-  jwt.verify(token, secret, {}, async (err, info) => {
-    if (err) throw err;
-    const posts = await Post.find({ author: info.id }).populate("author", [
-      "username",
-    ]);
-    const user = await User.findById(id);
-    res.json({ user, posts });
-  });
+  const posts = await Post.find({ author: id }).populate("author", [
+    "username",
+  ]);
+  const user = await User.findById(id);
+  res.json({ user, posts });
 });
 
 // listen to port
