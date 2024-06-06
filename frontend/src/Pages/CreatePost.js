@@ -35,7 +35,7 @@ export const CreatePost = () => {
   // }
 
   async function createPost(e) {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault();
 
     const data = new FormData();
     data.set("title", title);
@@ -49,7 +49,7 @@ export const CreatePost = () => {
         {
           method: "POST",
           body: data,
-          credentials: "include", // Include credentials (cookies) in the request
+          credentials: "include",
         }
       );
 

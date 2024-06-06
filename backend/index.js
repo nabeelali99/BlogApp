@@ -32,6 +32,12 @@ app.use(
   })
 );
 
+// Handle preflight OPTIONS requests
+
+app.options("*", cors());
+
+//middlewares
+
 app.use(express.json());
 
 app.use(cookieParser());
@@ -40,7 +46,10 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 
 // connect to database
 
-mongoose.connect(mongodbUrl);
+mongoose.connect(mongodbUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 // test server
 
