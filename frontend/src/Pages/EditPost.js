@@ -12,7 +12,6 @@ export const EditPost = () => {
   const [summary, setSummary] = useState("");
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
-
   const { userInfo } = useContext(UserContext);
   const [userProfile, setUserProfile] = useState({});
   useEffect(() => {
