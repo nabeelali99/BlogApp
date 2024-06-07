@@ -55,8 +55,11 @@ export const Post = ({
       <div className="image">
         <Link to={`/post/${_id}`}>
           <img
-            src={"https://bloggerz-blogapp-backend.onrender.com/" + cover || ""}
-            alt=""
+            src={
+              "https://bloggerz-blogapp-backend.onrender.com/" + cover ||
+              "https://source.unsplash.com/random"
+            }
+            alt="Image can't be loaded Because you are using a free hosting service"
           />
         </Link>
       </div>
