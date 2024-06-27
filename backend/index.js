@@ -187,15 +187,6 @@ app.post("/post", upload.single("file"), async (req, res) => {
 // update existing post
 
 app.put("/post", upload.single("file"), async (req, res) => {
-  let newPath = null;
-  if (req.file) {
-    const { originalname, path } = req.file;
-    const parts = originalname.split(".");
-    const ext = parts[parts.length - 1];
-    newPath = path + "." + ext;
-    fs.renameSync(path, newPath);
-  }
-
   // Upload to Cloudinary
   // Configuration
   cloudinary.config({
@@ -213,6 +204,15 @@ app.put("/post", upload.single("file"), async (req, res) => {
       console.log(error);
       return res.status(500).json({ error: "Failed to upload file" });
     });
+
+  let newPath = null;
+  if (req.file) {
+    const { originalname, path } = req.file;
+    const parts = originalname.split(".");
+    const ext = parts[parts.length - 1];
+    newPath = path + "." + ext;
+    fs.renameSync(path, newPath);
+  }
 
   const { id, title, summary, content, userProfile } = req.body;
   const author = userProfile;
