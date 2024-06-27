@@ -23,11 +23,8 @@ export default function MediaCard({ _id, title, summary, cover }) {
       }}
       cover={
         <img
-          alt="Image can't be loaded Because you are using a free hosting service"
-          src={
-            "https://bloggerz-blogapp-backend.onrender.com/" + cover ||
-            "https://source.unsplash.com/random"
-          }
+          alt="Post_image"
+          src={cover || "https://source.unsplash.com/random"}
           height={320}
         />
       }

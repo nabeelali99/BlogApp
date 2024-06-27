@@ -145,27 +145,6 @@ app.post("/logout", (req, res) => {
 
 // create post
 
-// app.post("/post", upload.single("file"), async (req, res) => {
-//   const { originalname, path } = req.file;
-//   const parts = originalname.split(".");
-//   const extension = parts[parts.length - 1];
-//   const newPath = path + "." + extension;
-//   fs.renameSync(path, newPath);
-
-//   const { title, summary, content, userProfile } = req.body;
-//   const author = userProfile;
-
-//   const post = await Post.create({
-//     title,
-//     summary,
-//     content,
-//     cover: newPath,
-//     author,
-//   });
-
-//   res.json(post);
-// });
-
 app.post("/post", upload.single("file"), async (req, res) => {
   // Upload to Cloudinary
   // Configuration
@@ -217,6 +196,24 @@ app.put("/post", upload.single("file"), async (req, res) => {
     fs.renameSync(path, newPath);
   }
 
+  // Upload to Cloudinary
+  // Configuration
+  cloudinary.config({
+    cloud_name: "dnfsluglr",
+    api_key: "862897249648926",
+    api_secret: "yV9whjHUSO28AzUZe9bbTnqTI0s",
+  });
+
+  // Upload the file from the request
+  const uploadResult = await cloudinary.uploader
+    .upload(req.file.path, {
+      public_id: "post_image",
+    })
+    .catch((error) => {
+      console.log(error);
+      return res.status(500).json({ error: "Failed to upload file" });
+    });
+
   const { id, title, summary, content, userProfile } = req.body;
   const author = userProfile;
   const post = await Post.findById(id);
@@ -228,7 +225,8 @@ app.put("/post", upload.single("file"), async (req, res) => {
     title,
     summary,
     content,
-    cover: newPath ? newPath : post.cover,
+    // cover: newPath ? newPath : post.cover,
+    cover: uploadResult.secure_url,
   });
 
   res.json(post);

@@ -99,11 +99,8 @@ export const PostPage = () => {
       )}
       <div className="image">
         <img
-          src={
-            `https://bloggerz-blogapp-backend.onrender.com/${postInfo.cover}` ||
-            "https://source.unsplash.com/random"
-          }
-          alt="Image can't be loaded Because you are using a free hosting service"
+          src={postInfo.cover || "https://source.unsplash.com/random"}
+          alt="Post_image"
         />
       </div>
 
