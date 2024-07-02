@@ -146,6 +146,11 @@ app.post("/logout", (req, res) => {
 // create post
 
 app.post("/post", upload.single("file"), async (req, res) => {
+  const timestamp = Date.now();
+  const currentTime = new Date(timestamp).toISOString();
+
+  console.log(currentTime);
+
   // Upload to Cloudinary
   // Configuration
   cloudinary.config({
@@ -157,7 +162,7 @@ app.post("/post", upload.single("file"), async (req, res) => {
   // Upload the file from the request
   const uploadResult = await cloudinary.uploader
     .upload(req.file.path, {
-      public_id: "post_image",
+      public_id: `post_image_${currentTime}`,
     })
     .catch((error) => {
       console.log(error);
@@ -187,6 +192,11 @@ app.post("/post", upload.single("file"), async (req, res) => {
 // update existing post
 
 app.put("/post", upload.single("file"), async (req, res) => {
+  const timestamp = Date.now();
+  const currentTime = new Date(timestamp).toISOString();
+
+  console.log(currentTime);
+
   // Upload to Cloudinary
   // Configuration
   cloudinary.config({
@@ -198,7 +208,7 @@ app.put("/post", upload.single("file"), async (req, res) => {
   // Upload the file from the request
   const uploadResult = await cloudinary.uploader
     .upload(req.file.path, {
-      public_id: "post_image",
+      public_id: `post_image_${currentTime}`,
     })
     .catch((error) => {
       console.log(error);
